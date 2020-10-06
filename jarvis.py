@@ -17,7 +17,7 @@ import requests
   
 
 
-url = 'http://api.openweathermap.org/data/2.5/weather?appid=1fca77ad2560fa7e260e457f76d792ab&q=bengaluru'
+url = 'http://api.openweathermap.org/data/2.5/weather?appid=API KEY&q=bengaluru'
 json_data = requests.get(url).json()
 format_add = json_data['weather'][0]['main']
 fomat_add = json_data['main']['temp'] 
@@ -27,8 +27,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('popular9adu@gmail.com', 'adurocks')
-    server.sendmail('popular9adu@gmail.com', to, content)
+    server.login('youremailid.com', 'password')
+    server.sendmail('youremailid.com', to, content)
     server.close()
 
 engine = pyttsx3.init('sapi5')
@@ -101,12 +101,6 @@ def start():
             elif 'google' in query:
                 webbrowser.open("https://www.google.com")
                 speak("opening google")
-            if "where is" in query:
-                query = query.split(" ")
-                location_url = "https://www.google.com/maps/place/" + str(query[2])
-                speak("Hold on Dante, I will show you where " + query[2] + " is.")
-                maps_arg = '/usr/bin/open -a "/Applications/Google Chrome.app" ' + location_url
-                os.system(maps_arg)
             elif 'volume' in query:
                 repla = query.replace("volume", "")
                 osascript.osascript("set volume output volume" + repla)    
